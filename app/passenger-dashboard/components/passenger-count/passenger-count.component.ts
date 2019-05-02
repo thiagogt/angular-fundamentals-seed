@@ -14,7 +14,7 @@ import { Passenger } from '../../models/Passenger.interface';
     <div>
     <h1>Passenger Detail</h1>
     <div>
-    Total passengers: {{totalCheckIn()}} / {{itens.length}}
+    Total passengers: {{totalCheckIn()}} / {{itens?.length}}
     </div>
     </div>`
 })

@@ -1,1 +1,19 @@
-{}
+{
+    "passengers":
+    [{
+    "id":1,
+    "fullname": "Rose",
+    "checkedIn": true,
+    "checkInDate": 201903110000
+  },
+  {
+    "id":2,
+    "fullname": "Beth",
+    "checkedIn": true,
+    "checkInDate": 201904110000
+  },{
+    "id":3,
+    "fullname": "Jhon",
+    "checkedIn": false
+  }]
+}
