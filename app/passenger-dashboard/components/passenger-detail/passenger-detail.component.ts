@@ -29,6 +29,10 @@ import { Passenger } from '../../models/Passenger.interface';
           (click)="removeElement()">
           Remove
           </button>
+          <button
+          (click)="goToView()">
+          View
+          </button>
 
     </div>
     </div>`
@@ -41,10 +45,13 @@ export class PassengerDetailComponent implements OnChanges{
     detail: Passenger;
 
     @Output()
-    remove: EventEmitter<any> = new EventEmitter();
+    remove: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
     @Output()
-    edit: EventEmitter<any> = new EventEmitter();
+    edit: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+
+    @Output()
+    view: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
     //This function is called before ngOnInit.
     // It keeps a state before and a current one of some compoenent.
@@ -66,6 +73,10 @@ export class PassengerDetailComponent implements OnChanges{
 
     removeElement(){
         this.remove.emit(this.detail);
+    }
+
+    goToView(){
+        this.view.emit(this.detail);
     }
 
     toggleEditing(){

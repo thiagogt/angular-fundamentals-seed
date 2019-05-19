@@ -139,8 +139,30 @@ interface Passenger{
     </div>
         Daqui para frente entramos no modulo de componentizacao
         da aplicacao. Todo o codigo começou a ser retirado daqui.-->
-    <div class  ="app">
+    <!--<div class  ="app">
     <passenger-dashboard></passenger-dashboard>
+    </div>
+        Daqui para frente entra a parte de Forms
+    
+    <div class  ="app">
+    <passenger-viewer></passenger-viewer>
+    </div>-->
+
+    <div class="app">
+    <nav class="nav">
+        <a routerLink="/"
+            routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">Home</a>
+         
+        <a routerLink="/oops"
+        routerLinkActive="active"
+      >404</a>
+      <a routerLink="/passengers"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+      >Passenger</a> 
+    </nav>
+    <router-outlet></router-outlet>
     </div>
   `
 })
@@ -229,6 +251,11 @@ export class AppComponent {
 // in a wrongly sequency, it could thrown a error.
 // For instance, if date was called after uppercase, it throw an error
 // because it will try to uppercase checkInDate and is not possible to uppercase a number
+
+
+// ======== routerLinkActiveOptions =========
+// exact: true => Give the option to set the active class just when fullfill
+// the path proposition. Which in the example is "/"
 
 // Architeture details============================
 

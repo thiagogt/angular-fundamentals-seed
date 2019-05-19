@@ -1,4 +1,20 @@
-.app{
+.nav{
+    margin: 0 0 0 10px;
+    padding: 0 0 0 20px;
+    border-bottom: 1px solid #dce5f2;
+    a {
+        border-radius: 2px;
+        background: #000111;
+        color: #ffffff;
+        padding: 4px 10px;
+        margin: 0 2px;
+       
+        &.active {
+            color: #2ecc71;
+        }
+    }
+    
+
 
 }
 .status{

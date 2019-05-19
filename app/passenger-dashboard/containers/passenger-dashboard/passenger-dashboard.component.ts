@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Passenger} from '../../models/Passenger.interface';
 
 import {PassengerDashboardService} from '../../passenger-dashboard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "passenger-dashboard",
@@ -16,7 +17,8 @@ import {PassengerDashboardService} from '../../passenger-dashboard.service';
     *ngFor="let passenger of passengers"
     [detail]="passenger"
     (remove)="onHandleRemove($event)"
-    (edit)="onHanldeEdit($event)">
+    (edit)="onHanldeEdit($event)"
+    (view)="onHandleView($event)">
     </passenger-detail>
     <div class="app" id="angular_pipes">
       
@@ -40,18 +42,23 @@ export class PassengerDashboardComponent implements OnInit{
 
     passengers: Passenger[];
 
-    constructor(private passengerService:PassengerDashboardService){}
+    constructor(
+      private router:Router,
+      private passengerService:PassengerDashboardService){}
 
     ngOnInit(){
       this.passengerService.getPassengers().subscribe((data: Passenger[]) => this.passengers = data);  
 
     }
 
+    // The data retuned is an array with the deleted object
     onHandleRemove(event){
       console.log(event);
-      this.passengers = this.passengers.filter((passenger:Passenger)=>{ 
-        return passenger.id != event.id;
-      });
+      this.passengerService.deletePassenger(event)
+        .subscribe((data: Passenger[]) =>
+        this.passengers = this.passengers.filter((passenger:Passenger)=>{ 
+          return passenger.id != event.id;
+        }));
     }
 
     //Here the type is set to show other way to declare a variable event in typescript.
@@ -59,14 +66,23 @@ export class PassengerDashboardComponent implements OnInit{
     // It merges two objects, taking the most actual diference from the second argument, to the first one.
     onHanldeEdit(event: Passenger){
       
-      this.passengers = this.passengers.map((passenger:Passenger)=>{ 
-        if(passenger.id === event.id){
-          passenger = Object.assign({},passenger, event);
-        }
-        
-        return passenger;
-      });
+      return this.passengerService.updatePassenger(event)
+        .subscribe((data:Passenger)=> { 
+          this.passengers = this.passengers.map((passenger:Passenger) => {
+          if(passenger.id === event.id){
+            passenger = Object.assign({},passenger, event);
+          }
+          
+          return passenger;
+        });
       console.log(this.passengers);
+      });
+    }
+
+    onHandleView(event: Passenger){
+      console.log(event.fullname);
+      this.router.navigate(['/passengers', event.id])
+
     }
 
 }

@@ -4,16 +4,20 @@
     "id":1,
     "fullname": "Rose",
     "checkedIn": true,
-    "checkInDate": 201903110000
+    "checkInDate": 201903110000,
+    "baggage": "Hold"
   },
   {
     "id":2,
     "fullname": "Beth",
     "checkedIn": true,
-    "checkInDate": 201904110000
+    "checkInDate": 201904110000,
+    "baggage": "Hold"
   },{
     "id":3,
     "fullname": "Jhon",
-    "checkedIn": false
+    "checkedIn": false,
+    "baggage": "None"
+    
   }]
 }
